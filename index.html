@@ -22,8 +22,6 @@
   .btn-limpar { background: #7f8c8d; }
   .btn-excel { background: #1d6f42; }
   .btn-excel:hover { background: #155c36; }
-
-  /* BOTÃO ADICIONADO */
   .btn-voltar { background: #003366; }
   .btn-voltar:hover { background: #00264d; }
 
@@ -122,6 +120,7 @@ function gerarCronograma() {
 
   disciplinas.forEach(disc => {
     const diasDuracao = Math.ceil((disc[2] / horasSemanais) * 7);
+
     const inicio = new Date(dataAtual);
     const fim = new Date(dataAtual);
     fim.setDate(fim.getDate() + diasDuracao);
@@ -137,7 +136,9 @@ function gerarCronograma() {
       </tr>
     `;
 
-    dataAtual = fim;
+    // ✅ intervalo de 1 dia entre disciplinas
+    dataAtual = new Date(fim);
+    dataAtual.setDate(dataAtual.getDate() + 1);
   });
 }
 
@@ -157,7 +158,6 @@ function limparTabela() {
   document.getElementById("dataInicio").value = "";
 }
 
-/* FUNÇÃO ADICIONADA */
 function voltarPagina() {
   window.location.href = "https://matheuscetiqt.github.io/Paginainicialcronogramadeaula/";
 }
